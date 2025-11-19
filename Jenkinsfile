@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    GIT_SSL_NO_VERIFY = 'true' // Optional: if SSL issues occur
+    GIT_SSL_NO_VERIFY = 'true'
   }
 
   stages {
@@ -13,7 +13,7 @@ pipeline {
             checkout([
               $class: 'GitSCM',
               branches: [[name: '*/main']],
-              userRemoteConfigs: [[url: 'https://github.com/Yashwanth1140/Online-Food-Ordering-System.git']],
+              userRemoteConfigs: [[url: 'https://github.com/CHARANREDDY937/maven-java-app.git']],
               extensions: [[$class: 'CloneOption', shallow: true, depth: 1]]
             ])
           }
@@ -51,14 +51,14 @@ pipeline {
       emailext(
         subject: ' Build Success: Online Food Ordering System',
         body: 'The Jenkins pipeline completed successfully.',
-        to: 'akulayashwanth43@gmail.com'
+        to: 'bannuru.charan.reddy@gmail.com'
       )
     }
     failure {
       emailext(
         subject: 'Build Failed: Online Food Ordering System',
         body: 'The Jenkins pipeline failed. Please check the console output for details.',
-        to: 'akulayashwanth43@gmail.com'
+        to: 'bannuru.charan.reddy@gmail.com'
       )
     }
   }
